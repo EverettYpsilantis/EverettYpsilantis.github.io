@@ -1,0 +1,61 @@
+{
+  "name": "Everett Ypsilantis",
+  "initials": "EY",
+  "tagline": "Using AI and analytics to study the earth, plan infrastructure, and serve communities.",
+  "metaDescription": "Everett Ypsilantis — geospatial services, data analytics, and AI. Portfolio of GIS, machine learning, and agentic systems work.",
+  "nav": [
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Education",
+      "href": "#education"
+    },
+    {
+      "label": "Experience",
+      "href": "#experience"
+    },
+    {
+      "label": "Projects",
+      "href": "#projects"
+    },
+    {
+      "label": "Skills",
+      "href": "#skills"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ],
+  "hero": {
+    "eyebrow": "Geospatial Services • Data Analytics • Artificial Intelligence",
+    "image": "assets/images/hero/cover.jpg",
+    "ctaPrimary": {
+      "label": "View Projects",
+      "href": "#projects"
+    },
+    "ctaSecondary": {
+      "label": "Get in Touch",
+      "href": "#contact"
+    }
+  },
+  "education": {
+    "image": "assets/images/education/dc-sky.jpg"
+  },
+  "about": {
+    "paragraphs": [
+      "I studied GIS and remote sensing in Boston University's Department of Earth and Environment. Working with maps and satellite imagery, I saw how spatial data drives urban planning, resource management, and climate resilience, and how spatial analytics and good mapping help communities worldwide operate more efficiently.",
+      "Right after BU, I joined TRC Companies as a GIS analyst. In a busy consulting practice I mapped and analyzed data for renewable energy and power clients, and now for environmental justice and climate resilience studies, working alongside project managers, field scientists, and engineers. That work made me fluent in large, messy spatial datasets, and it made one thing clear: data and AI are reshaping how every industry makes decisions. So I went back to school for an M.S. in Business Analytics and Artificial Intelligence at Johns Hopkins Carey Business School.",
+      "Today I handle large datasets with confidence: I take cluttered data, clean it, model it, and present it through dashboards, web applications, Python visualizations, SQL databases, and maps in ArcGIS Pro. I'm looking to bring my machine learning and agentic AI skills to help study the earth, plan infrastructure, and serve communities. I'm also a people person: I like to listen, learn, and explain the work as much as I like doing it. The role I want sits between the analysis and the client, doing the technical work, presenting it, and meeting the people it serves."
+    ]
+  },
+  "contact": {
+    "email": "everett.ypsilantis22@gmail.com",
+    "emailLabel": "everett.ypsilantis22@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/everett-ypsilantis/",
+    "github": "https://github.com/EverettYpsilantis",
+    "blurb": "I'm open to conversations about roles in geospatial analytics, data science, and AI, especially client-facing ones where I can do the technical work and present the findings."
+  }
+}

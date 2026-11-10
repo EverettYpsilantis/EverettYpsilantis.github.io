@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Everett Ypsilantis — Geospatial, Analytics & AI</title>
+  <meta name="description" content="Everett Ypsilantis — geospatial services, data analytics, and AI. Portfolio of GIS, machine learning, and agentic systems work.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230A1A14'/><text x='16' y='22' font-family='Georgia,serif' font-size='15' fill='%239BC7A9' text-anchor='middle'>EY</text></svg>">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" id="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__brand" href="#hero" data-site-brand>EY</a>
+      <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+        <span class="nav__toggle-bars" aria-hidden="true"></span>
+        <span class="nav__toggle-label">Menu</span>
+      </button>
+      <ul class="nav__menu" id="nav-menu" data-nav-menu></ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__inner container">
+        <p class="hero__eyebrow" data-hero-eyebrow></p>
+        <h1 class="hero__name" data-hero-name></h1>
+        <p class="hero__tagline" data-hero-tagline></p>
+        <div class="hero__ctas" data-hero-ctas></div>
+        <ul class="hero__credentials" aria-label="Degrees" data-hero-credentials></ul>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-heading">
+      <div class="container container--narrow">
+        <h2 class="section__title" id="about-heading">About</h2>
+        <div class="about" data-about></div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="education" aria-labelledby="education-heading">
+      <div class="container">
+        <h2 class="section__title" id="education-heading">Education &amp; Awards</h2>
+        <div class="credentials" data-education></div>
+      </div>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="experience-heading">
+      <div class="container container--narrow">
+        <h2 class="section__title" id="experience-heading">Experience</h2>
+        <ol class="timeline" data-experience></ol>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="projects" aria-labelledby="projects-heading">
+      <div class="container">
+        <h2 class="section__title" id="projects-heading">Projects</h2>
+        <div class="filters" role="group" aria-label="Filter projects by category" data-filters></div>
+        <p class="filters__status" role="status" aria-live="polite" data-filter-status></p>
+        <div class="projects" data-projects></div>
+      </div>
+    </section>
+
+    <section class="section" id="skills" aria-labelledby="skills-heading">
+      <div class="container">
+        <h2 class="section__title" id="skills-heading">Skills</h2>
+        <div class="skills" data-skills></div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="contact" aria-labelledby="contact-heading">
+      <div class="container container--narrow">
+        <h2 class="section__title" id="contact-heading">Contact</h2>
+        <div class="contact" data-contact></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span data-year></span> <span data-site-name></span></p>
+    </div>
+  </footer>
+
+  <dialog class="viewer" id="project-viewer" aria-labelledby="viewer-title" data-viewer>
+    <div class="viewer__panel" data-viewer-panel>
+      <div class="viewer__bar">
+        <button class="viewer__close" type="button" data-viewer-close aria-label="Close project">&times;</button>
+      </div>
+      <div class="viewer__content" data-viewer-content></div>
+    </div>
+  </dialog>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Project image viewer">
+    <div class="lightbox__backdrop" data-lightbox-close></div>
+    <div class="lightbox__panel">
+      <button class="lightbox__btn lightbox__btn--close" type="button" data-lightbox-close aria-label="Close image viewer">&times;</button>
+      <button class="lightbox__btn lightbox__btn--prev" type="button" data-lightbox-prev aria-label="Previous image">&lsaquo;</button>
+      <figure class="lightbox__figure">
+        <img class="lightbox__img" data-lightbox-img src="" alt="">
+        <figcaption class="lightbox__caption" data-lightbox-caption></figcaption>
+      </figure>
+      <button class="lightbox__btn lightbox__btn--next" type="button" data-lightbox-next aria-label="Next image">&rsaquo;</button>
+    </div>
+  </dialog>
+
+  <noscript>
+    <p class="noscript">This site loads its content from JSON data files with JavaScript. Please enable JavaScript to view it.</p>
+  </noscript>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

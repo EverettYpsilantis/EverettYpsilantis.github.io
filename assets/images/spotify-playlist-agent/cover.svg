@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" role="img" aria-label="A green vinyl record">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="75%">
+      <stop offset="0" stop-color="#163326"/>
+      <stop offset="1" stop-color="#0A1A14"/>
+    </radialGradient>
+    <radialGradient id="disc" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#2F9E5F"/>
+      <stop offset="0.7" stop-color="#22804B"/>
+      <stop offset="1" stop-color="#155F36"/>
+    </radialGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="0.42" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.22"/>
+      <stop offset="0.58" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="label" cx="45%" cy="40%" r="65%">
+      <stop offset="0" stop-color="#F0F4EF"/>
+      <stop offset="1" stop-color="#C9D9CD"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#bg)"/>
+
+  <!-- shadow -->
+  <ellipse cx="306" cy="212" rx="168" ry="168" fill="#000" opacity="0.35"/>
+
+  <!-- record -->
+  <g transform="translate(300 200)">
+    <circle r="165" fill="url(#disc)"/>
+    <circle r="165" fill="none" stroke="#0E4A29" stroke-width="2"/>
+    <g fill="none" stroke="#0F4F2C" stroke-opacity="0.55" stroke-width="1">
+      <circle r="155"/><circle r="148"/><circle r="141"/><circle r="134"/>
+      <circle r="127"/><circle r="120"/><circle r="113"/><circle r="106"/>
+      <circle r="99"/><circle r="92"/><circle r="85"/><circle r="78"/>
+      <circle r="71"/><circle r="64"/>
+    </g>
+    <g fill="none" stroke="#7FD6A3" stroke-opacity="0.18" stroke-width="1">
+      <circle r="151"/><circle r="137"/><circle r="123"/><circle r="109"/>
+      <circle r="95"/><circle r="81"/><circle r="67"/>
+    </g>
+    <circle r="165" fill="url(#sheen)"/>
+
+    <!-- center label -->
+    <circle r="54" fill="url(#label)"/>
+    <circle r="54" fill="none" stroke="#9BC7A9" stroke-width="2"/>
+    <circle r="42" fill="none" stroke="#9BC7A9" stroke-opacity="0.6" stroke-width="1"/>
+    <path d="M -30 -8 H 30 M -22 4 H 22" stroke="#6E9B7E" stroke-width="3" stroke-linecap="round"/>
+    <circle r="6" fill="#0A1A14"/>
+  </g>
+
+  <!-- tonearm -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="520" cy="70" r="20" fill="#244636" stroke="#9BC7A9" stroke-width="2"/>
+    <circle cx="520" cy="70" r="7" fill="#9BC7A9"/>
+    <path d="M 520 70 L 498 230 L 452 268" fill="none" stroke="#C9D9CD" stroke-width="6"/>
+    <rect x="436" y="258" width="24" height="16" rx="3" transform="rotate(-38 448 266)" fill="#C9A15A"/>
+  </g>
+</svg>

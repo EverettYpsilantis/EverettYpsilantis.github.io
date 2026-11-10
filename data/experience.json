@@ -1,0 +1,104 @@
+{
+  "roles": [
+    {
+      "title": "Geospatial Services & Data Analyst",
+      "org": "TRC Companies – Member of WSP",
+      "location": "Lowell & Boston, MA · Los Angeles, CA · London, UK",
+      "dateRange": "Feb 2023 – Present",
+      "bullets": [
+        "Delivered geospatial analysis and data-driven figures for 75+ clients across power, utility, transportation, and renewable energy sectors, translating complex multi-dataset spatial problems into clear, actionable deliverables for project teams and stakeholders.",
+        "Partnered with clients, project managers, and engineers on a multi-state natural gas line planning effort spanning three southern U.S. states, building ArcGIS Pro Model Builder and Python workflows that automated geoprocessing and aligned distributed teams on a single consistent process.",
+        "Launched an interactive web application as the project GIS lead, improving spatial data sharing across 10 wetland scientists by integrating TRC, U.S. hydrological, parcel, and USDA soil & geological data layers to support new field projects.",
+        "Led a technical audit of a 20+ tool agentic GIS pipeline that classifies New York wetlands from a mapped area of interest, working with the client to benchmark tools against a revised state SOP and surface jurisdictional logic gaps and code defects."
+      ]
+    },
+    {
+      "title": "Data Analytics Intern",
+      "org": "Knoll Environmental",
+      "location": "Needham, MA",
+      "dateRange": "Jun 2022 – Aug 2022",
+      "bullets": [
+        "Cleaned and standardized field-collected data, resolving missing values and duplicate entries, then built groundwater chemical and soil composition tables in Excel and Power BI to support contamination response across 20+ project sites in the greater Boston region."
+      ]
+    },
+    {
+      "title": "GIS & Technical Services Intern",
+      "org": "Clean Harbors Environmental Services",
+      "location": "Boston, MA",
+      "dateRange": "May 2021 – Aug 2021",
+      "bullets": [
+        "Collaborated with the VP of Transportation Compliance and GIS analysts to map hazardous waste removal trucking routes across New England with the ArcGIS Pro Network Analyst tool."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Science",
+      "short": "M.S. Business Analytics & AI",
+      "field": "Business Analytics and Artificial Intelligence",
+      "school": "Johns Hopkins",
+      "location": "Washington, D.C.",
+      "dateRange": "Aug 2026",
+      "coursework": [
+        "Generative AI",
+        "Responsible AI",
+        "Data Science & Business Intelligence",
+        "Financial Decisions & Investment Analysis"
+      ]
+    },
+    {
+      "degree": "Bachelor of Science",
+      "short": "B.S. Environmental Science · Geospatial & Remote Sensing",
+      "field": "Environmental Science, concentrating in Geospatial Analytics and Remote Sensing",
+      "school": "Boston University",
+      "location": "Boston, MA",
+      "dateRange": "Dec 2022",
+      "coursework": [
+        "Geospatial Analytics",
+        "Remote Sensing"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "title": "National Planning, Permitting, and Licensing Quality Award",
+      "org": "TRC Companies",
+      "date": "2024",
+      "notes": "Awarded to the TRC employee exemplifying exceptional communication, initiative, leadership, and commitment to high-quality deliverables."
+    }
+  ],
+  "skills": {
+    "GIS & Spatial Analytics": [
+      "ArcGIS Pro",
+      "Web AppBuilder",
+      "Model Builder",
+      "Python Toolboxes",
+      "Google Earth Engine",
+      "QGIS",
+      "Satellite imagery processing",
+      "Raster/vector data (GeoTIFF, GDAL)",
+      "Earth observation data pipelines",
+      "Employee training"
+    ],
+    "AI & Machine Learning": [
+      "LLMs & GenAI (Claude SDK, OpenAI, RAG)",
+      "Agentic workflow design",
+      "Prompt engineering",
+      "scikit-learn",
+      "PyTorch",
+      "XGBoost",
+      "Supervised & unsupervised modeling",
+      "Explainable & responsible AI"
+    ],
+    "Data Analytics & Visualization": [
+      "Python (pandas, matplotlib, seaborn)",
+      "SQL & relational databases",
+      "Pipeline automation & scripting",
+      "Statistical modeling & regression",
+      "Data cleaning",
+      "Tableau",
+      "Power BI",
+      "Streamlit dashboards"
+    ]
+  }
+}

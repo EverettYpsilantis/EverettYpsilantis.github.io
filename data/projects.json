@@ -1,0 +1,752 @@
+[
+  {
+    "id": "merrimack-valley-urban-growth",
+    "title": "Merrimack Valley Urban Growth",
+    "category": "Remote Sensing",
+    "client": null,
+    "role": "Analyst & Developer",
+    "dateRange": "2026",
+    "teaser": "Random Forest land cover classification of Landsat imagery mapping 15 years of development across nine Merrimack Valley towns, plus a validated model of where growth is likely next.",
+    "writeup": [
+      {
+        "heading": "The question",
+        "body": "Where has the Merrimack Valley actually developed between 2010 and 2025, and where is growth most likely to happen next? The study covers nine towns: Lowell, Lawrence, Haverhill, Methuen, Dracut, Andover, North Andover, Boxford, and Groveland.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/merrimack-valley-urban-growth/2010-true-color.png",
+                "width": 787,
+                "height": 577,
+                "label": "2010",
+                "alt": "True-color Landsat 5 image of the Merrimack Valley in 2010, with the Merrimack River winding through Lowell, Lawrence, and Haverhill",
+                "caption": "Landsat 5 TM · true color · 2010"
+              },
+              {
+                "src": "assets/images/merrimack-valley-urban-growth/2025-true-color.png",
+                "width": 807,
+                "height": 607,
+                "label": "2025",
+                "alt": "True-color Landsat 8/9 image of the same Merrimack Valley extent in 2025",
+                "caption": "Landsat 8/9 OLI · true color · 2025"
+              }
+            ],
+            "caption": "True color: the corridor as the eye sees it, fifteen years apart."
+          },
+          {
+            "images": [
+              {
+                "src": "assets/images/merrimack-valley-urban-growth/2010-false-color.png",
+                "width": 795,
+                "height": 592,
+                "label": "2010",
+                "alt": "False-color Landsat 5 image of the Merrimack Valley in 2010; vegetation is bright green, water is black, and built-up areas are gray-purple",
+                "caption": "Landsat 5 TM · false color · 2010"
+              },
+              {
+                "src": "assets/images/merrimack-valley-urban-growth/2025-false-color.png",
+                "width": 802,
+                "height": 602,
+                "label": "2025",
+                "alt": "False-color Landsat 8/9 image of the Merrimack Valley in 2025; vegetation is bright green, water is black, and built-up areas are gray-purple",
+                "caption": "Landsat 8/9 OLI · false color · 2025"
+              }
+            ],
+            "caption": "False color: healthy vegetation renders bright green and water nearly black, so built-up land stands out in gray."
+          }
+        ]
+      },
+      {
+        "heading": "Classifying land cover",
+        "body": "In Google Earth Engine, I classified Landsat 5 TM (2010) and Landsat 8/9 OLI (2025) imagery into four classes (water, developed, vegetation, and barren) using Random Forest. Against independently interpreted validation points, both maps reached 85–86% overall accuracy (kappa ≈ 0.80).",
+        "mediaFirst": true,
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/merrimack-valley-urban-growth/2010-classification.png",
+                "width": 812,
+                "height": 612,
+                "label": "2010",
+                "alt": "Random Forest land cover map of the Merrimack Valley in 2010: developed land in red, vegetation in green, water in blue, barren in tan",
+                "caption": "Random Forest land cover · 2010"
+              },
+              {
+                "src": "assets/images/merrimack-valley-urban-growth/2025-classification.png",
+                "width": 811,
+                "height": 607,
+                "label": "2025",
+                "alt": "Random Forest land cover map of the Merrimack Valley in 2025: developed land in red, vegetation in green, water in blue, barren in tan",
+                "caption": "Random Forest land cover · 2025"
+              }
+            ],
+            "legend": [
+              {
+                "label": "Developed",
+                "color": "#D53E4F"
+              },
+              {
+                "label": "Vegetation",
+                "color": "#3F9950"
+              },
+              {
+                "label": "Water",
+                "color": "#2B6CB0"
+              },
+              {
+                "label": "Barren",
+                "color": "#CBB994"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Measuring change",
+        "body": "Comparing the two dates, after filtering out sensor noise at land cover boundaries, showed roughly 6,570 net acres of new development across the corridor. Andover led in both raw acreage (1,881 acres) and share of town converted (9.1%). Lowell and Lawrence, already dense, each added under 2%."
+      },
+      {
+        "heading": "Predicting future growth",
+        "body": "A second Random Forest model predicts growth likelihood from distance to existing development, highways, and water, plus slope and elevation. To validate it over time, I trained only on 2010–2017 change and tested against what actually developed from 2017 to 2025. Land in high-probability zones developed at more than double the rate of land in low-probability zones (67% vs. 29%).",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/merrimack-valley-urban-growth/net-new-development-towns.png",
+                "width": 802,
+                "height": 612,
+                "alt": "Satellite basemap of the Merrimack Valley with the nine study towns outlined in translucent white and patches of net new development from 2010 to 2025 marked in red, scattered across the region",
+                "caption": "Net new development, 2010–2025 · study towns outlined"
+              }
+            ],
+            "caption": "Observed change is the model's starting point: every red patch converted from vegetation or barren land to development between 2010 and 2025."
+          },
+          {
+            "images": [
+              {
+                "src": "assets/images/merrimack-valley-urban-growth/town-growth-table.png",
+                "width": 1622,
+                "height": 1261,
+                "alt": "Table of the nine towns showing percent developed 2010–2025, net acres developed, and predicted future growth likelihood: Andover 9.1%, 1,881 acres, 54.4%; Methuen 6.8%, 995, 57.9%; Haverhill 5.9%, 1,344, 45.7%; Dracut 4.4%, 605, 58.8%; Groveland 4.2%, 253, 41.9%; North Andover 4.2%, 737, 49.9%; Boxford 3.5%, 540, 33.5%; Lawrence 1.7%, 80, 59.9%; Lowell 1.5%, 138, 64.9%",
+                "caption": "Development history and predicted growth likelihood by town"
+              }
+            ],
+            "caption": "Lowell (64.9%) and Lawrence (59.9%) top the forecast despite adding the least land over the past fifteen years."
+          }
+        ]
+      },
+      {
+        "heading": "What it shows",
+        "body": "The forecast flips the growth story. Andover is land-constrained after its 15-year boom, and its predicted growth drops to mid-pack. Already-dense Lowell and Lawrence emerge as the highest-likelihood areas for future development."
+      },
+      {
+        "heading": "Deliverables",
+        "body": "Ranked bar charts and a styled summary table (town, % developed, net acres, predicted growth), alongside a published interactive dashboard with a 2010-vs-2025 swipe comparison, toggleable development and growth-probability layers, and a town selector with live stats.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/merrimack-valley-urban-growth/net-acres-by-town.png",
+                "width": 1900,
+                "height": 1300,
+                "alt": "Bar chart of net acres developed by town, 2010–2025: Andover 1,881, Haverhill 1,344, Methuen 995, North Andover 737, Dracut 605, Boxford 540, Groveland 253, Lowell 138, Lawrence 80",
+                "caption": "Net acres developed by town, 2010–2025"
+              }
+            ]
+          },
+          {
+            "images": [
+              {
+                "src": "assets/images/merrimack-valley-urban-growth/pct-developed-by-town.png",
+                "width": 1800,
+                "height": 1300,
+                "alt": "Horizontal bar chart of percent of town land developed, 2010–2025: Andover 9.1%, Methuen 6.8%, Haverhill 5.9%, Dracut 4.4%, Groveland 4.2%, North Andover 4.2%, Boxford 3.5%, Lawrence 1.7%, Lowell 1.5%",
+                "caption": "Share of town land developed, 2010–2025"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tools": [
+      "Google Earth Engine",
+      "Random Forest",
+      "Land cover classification",
+      "Change detection",
+      "Accuracy assessment"
+    ],
+    "dataSources": [
+      "Landsat 5 TM (2010)",
+      "Landsat 8/9 OLI (2025)",
+      "Highway network",
+      "Elevation and slope"
+    ],
+    "images": [
+      {
+        "src": "assets/images/merrimack-valley-urban-growth/2025-classification.png",
+        "width": 811,
+        "height": 607,
+        "label": "2025",
+        "alt": "Random Forest land cover map of the Merrimack Valley in 2025: developed land in red, vegetation in green, water in blue, barren in tan",
+        "caption": "Random Forest land cover · 2025"
+      }
+    ],
+    "links": [
+      {
+        "label": "Open the interactive dashboard",
+        "url": "https://ee-merrimack-growth.projects.earthengine.app/view/merrimack-valley-urban-growth"
+      }
+    ],
+    "featured": true,
+    "confidentialityNote": null
+  },
+  {
+    "id": "wendell-farm-site-suitability",
+    "title": "Farm Site Suitability in Western Massachusetts",
+    "category": "GIS & Spatial Analysis",
+    "client": null,
+    "role": "Geospatial Analyst (independent)",
+    "dateRange": "2025",
+    "teaser": "A four-figure environmental map book for a 34.6-acre family property, mapping water, wetlands, soils, and terrain to show where gardens and cropland belong.",
+    "writeup": [
+      {
+        "heading": "The project",
+        "body": "A friend's family owns 34.6 acres on the Wendell–New Salem line in Franklin County, Massachusetts, and wanted to know where gardens and cropland should go before breaking ground. I put together an independent environmental map book to give them a first look at the land. **Figure 1** orients the property: I pulled the parcel boundary from MassGIS and Franklin County GIS data and set it on a USGS topographic base at 1:24,000 with a regional inset. It follows the standard report-figure format I've produced for years on TRC's GIS team.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/wendell-farm-site-suitability/location-map.png",
+                "width": 1246,
+                "height": 802,
+                "alt": "Property location map: a 34.62-acre parcel outlined in yellow on a USGS topographic base, straddling the Wendell–New Salem town line in Franklin County, with a New England inset map locating it in north-central Massachusetts",
+                "caption": "Figure 1 · Property location map"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Water and wetlands",
+        "body": "**Figure 2** maps the property's hydrology, combining National Hydrography Dataset streams, National Wetlands Inventory wetland types, and MassGIS dam locations over aerial imagery. Two streams run north to south through the western parcel, and one feeds a freshwater emergent wetland in the middle of the open field. The Middle Branch Swift River and its riverine wetland run along the eastern parcel, and Porter Pond reaches into the northern corner from across Jennison Road. FEMA has no digital flood hazard data for Franklin County, so these stream and wetland layers are the best available picture of where water collects. They mark the ground to leave alone: Massachusetts protects wetland resource areas, and work within 100 feet of one generally needs review by the local conservation commission.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/wendell-farm-site-suitability/hydrology-map.png",
+                "width": 1242,
+                "height": 802,
+                "alt": "Hydrology map over aerial imagery: NHD streams in blue run through the western parcel, a light-green emergent wetland sits in the central field, the Middle Branch Swift River's riverine wetland borders the eastern parcel, and Porter Pond lies at the northern edge",
+                "caption": "Figure 2 · Hydrology map"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Soils",
+        "body": "**Figure 3** breaks the parcel into eleven USDA-NRCS soil survey (SSURGO) map units, with a table of drainage class, farmland classification, hydric rating, and acreage. About 5.2 acres of Montauk fine sandy loam along Wendell Road is rated prime farmland. Another 10.9 acres, mostly Canton and Gloucester sandy loams in the western field, is farmland of statewide importance. About a quarter of the property (8.6 acres) is hydric: Swansea muck, Scarboro mucky sandy loam, and Peacham mucky peat around the wetlands, plus the pond. Those wet soils are the areas to keep out of cultivation.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/wendell-farm-site-suitability/soils-map.png",
+                "width": 1242,
+                "height": 801,
+                "alt": "Soils map with a summary table: soil map units outlined over aerial imagery and shaded by USDA farmland class, with prime farmland in green along Wendell Road, farmland of statewide importance in tan across the western field, and not-prime farmland in gray; the table lists each soil's drainage class, hydric rating, percent of area, and acreage",
+                "caption": "Figure 3 · Soils map and summary table"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Terrain",
+        "body": "**Figure 4** shows elevation from a digital elevation model I processed in ArcGIS Pro, overlaid with 2-foot USGS contours and the NWI wetlands. The property is gentle: the ground falls from about 1,070 feet at the southwest corner to under 1,000 feet at the central wetland and the river. For farming, the widely spaced contours across the open fields mean easy cultivation and low erosion risk. The low spots line up with the wetlands and hydric soils, where water and cold air settle.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/wendell-farm-site-suitability/elevation-map.png",
+                "width": 1241,
+                "height": 797,
+                "alt": "Elevation map: the parcel outlined in black over a yellow-to-tan elevation surface with 2-foot contour lines and NWI wetlands in light blue, showing gentle ground across the fields and lower land along the central wetland and the river",
+                "caption": "Figure 4 · Elevation map"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "What it shows",
+        "body": "Read together, the four figures point to the same ground. The open, gently sloping, well-drained fields are the best candidates for gardens and cropland: the prime Montauk soils along Wendell Road and the Canton sandy loam in the western field. The central emergent wetland, its stream, the mucky soils around them, and the river corridor on the eastern parcel should stay out of production. The rocky, wooded Millsite-Woodstock ground to the west is better left as woodland."
+      },
+      {
+        "heading": "Deliverables",
+        "body": "A four-page environmental map book covering location, hydrology, soils, and elevation, in standard report-figure format: title block, legend, scale bar, north arrow, data sources, and a locator inset on every page. It's built so landowners with no GIS background can read it and decide where to plant."
+      },
+      {
+        "heading": "Next steps",
+        "body": "Next, I'm adding wildlife habitat and conservation figures from MassGIS: certified and potential vernal pools, NHESP priority habitats of rare species, and BioMap core habitat. These will flag the areas the family should steer clear of before clearing or planting."
+      }
+    ],
+    "tools": [
+      "ArcGIS Pro",
+      "Cartography",
+      "Site suitability",
+      "Terrain analysis",
+      "Soil analysis"
+    ],
+    "dataSources": [
+      "MassGIS and Franklin County parcels",
+      "USGS topographic maps and contours",
+      "National Hydrography Dataset",
+      "National Wetlands Inventory",
+      "USDA-NRCS SSURGO soils",
+      "FEMA NFHL (no digital data for Franklin County)"
+    ],
+    "images": [
+      {
+        "src": "assets/images/wendell-farm-site-suitability/soils-thumbnail.png",
+        "width": 840,
+        "height": 560,
+        "alt": "Aerial view of the property outlined in yellow, with soil map units shaded by farmland class: prime farmland in green along Wendell Road, farmland of statewide importance in tan across the western field, and not-prime farmland in gray over the woods and wetlands",
+        "caption": "Soils by farmland class over aerial imagery"
+      }
+    ],
+    "links": [],
+    "featured": true,
+    "confidentialityNote": "Independent work for a private landowner; the owners are not named."
+  },
+  {
+    "id": "air-filtration-market-entry",
+    "title": "City Prioritization for Air Filtration Market Entry",
+    "category": "Machine Learning & Analytics",
+    "client": null,
+    "role": "Data Scientist (team project)",
+    "dateRange": "2026",
+    "teaser": "XGBoost forecasts of fine-particle air pollution across five U.S. cities, turned into a weighted score that ranks where an air filtration company should launch first.",
+    "writeup": [
+      {
+        "heading": "The question",
+        "body": "An industrial air filtration company needs to choose which of five major U.S. cities to launch in first: Los Angeles, New York, Houston, Phoenix, or Chicago. Rather than going on intuition, sales and market-entry leadership wanted a data-driven ranking of where demand for filtration should be strongest over the next 12 months."
+      },
+      {
+        "heading": "The data",
+        "body": "I pulled three public sources through their APIs: the EPA Air Quality System (about 66,000 daily readings of PM2.5, ozone, carbon monoxide, and nitrogen dioxide from 2015 to 2024), NOAA Climate Data Online (monthly temperature and precipitation from airport weather stations), and U.S. Census annual population estimates. Merged, they form a monthly panel of 600 city-months. PM2.5, the fine particulate matter most closely tied to health effects, is the modeling target. Los Angeles carries the heaviest historical burden at 11.4 µg/m³; New York and Phoenix the lightest, near 8.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/air-filtration-market-entry/pm25-by-city.png",
+                "width": 1900,
+                "height": 1200,
+                "alt": "Bar chart of average monthly PM2.5 from 2015 to 2024: Los Angeles 11.4, Houston 9.9, Chicago 9.4, New York 8.2, Phoenix 8.1 micrograms per cubic meter",
+                "caption": "Average PM2.5 by city, 2015–2024"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Modeling",
+        "body": "Each month's PM2.5 is predicted from 1-, 3-, and 12-month lags, 3- and 12-month rolling means of past values, a sine/cosine encoding of the month, the other pollutants, climate, population, and city. To mirror real forecasting, the split is by time rather than random: models trained through November 2023 and were tested on the 12 months after. XGBoost beat Linear Regression and Random Forest, with a mean absolute error of 1.40 µg/m³ and R² of 0.67. Season and the same month's level a year earlier are the strongest predictors. Population ranks third, though with only five cities it partly acts as a city identifier.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/air-filtration-market-entry/model-comparison.png",
+                "width": 1900,
+                "height": 840,
+                "alt": "Model comparison on the held-out final 12 months: Linear Regression RMSE 2.34, MAE 1.73, R-squared 0.45; Random Forest RMSE 1.91, MAE 1.44, R-squared 0.64; XGBoost RMSE 1.83, MAE 1.40, R-squared 0.67",
+                "caption": "Model comparison on the held-out 12 months"
+              }
+            ]
+          },
+          {
+            "images": [
+              {
+                "src": "assets/images/air-filtration-market-entry/feature-importance.png",
+                "width": 1900,
+                "height": 1400,
+                "alt": "Top 15 XGBoost feature importances, colored by group: month_sin 0.157 and PM2.5 lag 12 0.135 lead, followed by population 0.093, month_cos 0.089, ozone 0.072, the Phoenix and Houston city indicators near 0.06, NO2, CO, PM2.5 lag 1, precipitation, temperature, rolling means, and PM2.5 lag 3 at 0.023",
+                "caption": "Top 15 feature importances, grouped by type"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Forecasting 2025",
+        "body": "The forecast runs recursively: each predicted month feeds the lag features for the next. Future weather and pollutant inputs use each city's historical monthly averages, and population follows each city's linear trend. Los Angeles has the highest predicted average (11.2 µg/m³), peaking at 15.3 in November. Phoenix has the lowest average (8.2), yet climbs above 13 in November and December. Its risk is a late-fall and winter pattern, not summer heat. Houston peaks in June.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/air-filtration-market-entry/pm25-forecast.png",
+                "width": 1920,
+                "height": 1280,
+                "alt": "Line chart of predicted monthly PM2.5 for 2025 by city with a dashed line at the 12 microgram cutoff: Los Angeles rises to 15.3 in November, Phoenix stays lowest from February to September then rises above 13 in November and December, Houston peaks at 13.6 in June, and New York and Chicago stay below 12 all year",
+                "caption": "12-month PM2.5 forecast by city, 2025"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Scoring the market",
+        "body": "A Market Opportunity Score turns the forecast into a ranking: 40% predicted average PM2.5, 25% population, 20% months forecast above 12 µg/m³, and 15% the past year's actual average, with each input min-max scaled to 0–1 across the five cities. The 12 µg/m³ cutoff is the EPA annual standard in force until 2024 (since lowered to 9), used here as a monthly risk threshold.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/air-filtration-market-entry/opportunity-score.png",
+                "width": 1900,
+                "height": 1200,
+                "alt": "Stacked bar chart of the Market Opportunity Score by weighted component: Los Angeles 0.831 with contributions from all four inputs; New York 0.481 from predicted PM2.5 and population only; Houston 0.480 from all four; Phoenix 0.188 from high-risk months and persistence only; Chicago 0.182",
+                "caption": "Market Opportunity Score, broken into its weighted inputs"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "What it shows",
+        "body": "Los Angeles ranks first (0.83), leading on predicted pollution, high-risk months, and persistence. New York edges Houston, 0.481 to 0.480, on population alone: its pollution is moderate, but it has more than twice Los Angeles's population. Houston's case is pollution, and it pairs with Phoenix as a Phase 2 market. Chicago ranks last (0.18), with mid-pack pollution, no high-risk months, and a modest market. The recommendation: launch in Los Angeles, follow with New York, expand to Houston and Phoenix, and re-score each year as population, climate, and emissions shift."
+      },
+      {
+        "heading": "Deliverables",
+        "body": "Two Python notebooks, one for the API data pipeline and exploratory analysis and one for feature engineering, modeling, forecasting, and scoring, plus a slide deck presenting the ranked launch plan to leadership."
+      }
+    ],
+    "tools": [
+      "Python",
+      "XGBoost",
+      "scikit-learn",
+      "pandas",
+      "Time-series forecasting",
+      "Feature engineering"
+    ],
+    "dataSources": [
+      "EPA Air Quality System (AQS) API",
+      "NOAA Climate Data Online",
+      "U.S. Census Bureau population estimates"
+    ],
+    "images": [
+      {
+        "src": "assets/images/air-filtration-market-entry/cover.png",
+        "width": 317,
+        "height": 240,
+        "alt": "Downtown Los Angeles skyline against a pale sky",
+        "caption": "Downtown Los Angeles"
+      }
+    ],
+    "links": [
+      {
+        "label": "View the code on GitHub",
+        "url": "https://github.com/EverettYpsilantis/air-filtration-market-entry-analysis"
+      }
+    ],
+    "featured": true,
+    "confidentialityNote": null
+  },
+  {
+    "id": "aarp-lifesync-persona-analytics",
+    "title": "AARP LifeSync: Member Personas and Content Intelligence",
+    "category": "Machine Learning & Analytics",
+    "client": "AARP · Johns Hopkins consulting capstone",
+    "role": "Data Scientist, persona segmentation (team project)",
+    "dateRange": "2026",
+    "accent": "red",
+    "teaser": "K-Means clustering of 15,204 Health and Retirement Study respondents into three AARP member personas, the foundation for a personalized health content and Medicare plan platform.",
+    "writeup": [
+      {
+        "heading": "The question",
+        "body": "Our final presentation opened with Judy, an AARP member whose simple illness became serious because she fell through the cracks. For our consulting capstone in the Johns Hopkins M.S. in Business Analytics and AI, my team worked with AARP on one question: how do you turn the largest senior advocacy organization in the country into each member's personal health companion? Our answer was **LifeSync**, a context-aware app with three parts: a personalized content feed, local community events, and a Health & Wealth Hub that matches members to Medicare plans.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/aarp-lifesync-persona-analytics/feed.png",
+                "width": 433,
+                "height": 666,
+                "alt": "LifeSync prototype feed greeting a member named Judy, with personalized articles on chronic pain, AI symptom tracking, and diabetes-friendly eating, and a coverage check for diabetes prevention programs",
+                "caption": "Personalized feed"
+              },
+              {
+                "src": "assets/images/aarp-lifesync-persona-analytics/community.png",
+                "width": 478,
+                "height": 733,
+                "alt": "LifeSync local community page showing AARP events near Baltimore, including a community walk and an estate planning seminar with RSVP buttons",
+                "caption": "Local community"
+              },
+              {
+                "src": "assets/images/aarp-lifesync-persona-analytics/hub.png",
+                "width": 498,
+                "height": 767,
+                "alt": "LifeSync Health & Wealth Hub showing membership status, the member's current Medicare Advantage plan, a benefits snapshot, and a coverage matchmaker by health priority",
+                "caption": "Health & Wealth Hub"
+              }
+            ],
+            "caption": "The LifeSync prototype the team built"
+          }
+        ]
+      },
+      {
+        "heading": "My part: finding the members",
+        "body": "I owned persona development. To find the most common kinds of AARP-age members, I clustered the RAND Health and Retirement Study (HRS), Wave 15 (2020), a nationally representative survey of Americans over 50. From 15,204 respondents I built features for self-rated health, chronic conditions, age, income, education, physical activity, cognition, and limits on daily living activities, then combined them into three composite scores: **health burden**, **lifestyle engagement**, and **life stage**. I ran K-Means on those scores and chose the number of clusters with the elbow method and silhouette scores, which settled on three.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/aarp-lifesync-persona-analytics/age-distribution.png",
+                "width": 1465,
+                "height": 738,
+                "alt": "Histogram of respondent age by persona: one cluster peaks near age 59, one near 65, and one near 79, with the oldest cluster stretching to 100",
+                "caption": "Age distribution of the three clusters across 15,204 HRS respondents"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Three personas",
+        "body": "**The Aging Independent** (34% of respondents) is the youngest cluster, averaging 59, with 1.8 chronic conditions. It is mobile-first and self-reliant, and aging in place or losing a spouse is what brings it to AARP. **The Chronic Fighter** (23%) averages 65 and carries the heaviest disease burden, 3.24 conditions, so it wants drug pricing, condition management, and help using its plan. **The Planful Pre-Retiree** (43%) is the largest cluster and the healthiest, at 1.1 conditions, and the most receptive to forward-looking guidance on finances, transitions, and plan comparison. The rest of the team built on these profiles to decide what content each member sees and which Medicare plan features to weigh.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/aarp-lifesync-persona-analytics/persona-profiles.png",
+                "width": 2082,
+                "height": 926,
+                "alt": "Three persona cards: The Aging Independent, 34% of the audience, average age 59, 1.8 conditions, mobile-first; The Chronic Fighter, 23%, average age 65, 3.24 conditions, heavy reader; The Planful Pre-Retiree, 43%, average age 79, 1.1 conditions, cross-device",
+                "caption": "Persona profiles: share of respondents, health, and digital habits"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Where AARP's content falls short",
+        "body": "The team compared AARP's articles with the New York Times. AARP fully covers its high-trust core, Medicare and tax, but has no match for 24% of NYT community content, 45% of AI content, and 77% of politics content. Placing both collections in one embedding space and projecting it with UMAP shows AARP's articles packed into a tight health cluster inside the much broader NYT territory.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/aarp-lifesync-persona-analytics/topic-coverage.png",
+                "width": 1567,
+                "height": 929,
+                "alt": "Bar chart of NYT content with no AARP match by topic: Medicare and tax fully covered, community 23.9%, AI 44.5%, politics 77.4%",
+                "caption": "Share of NYT content with no AARP match, by topic"
+              }
+            ]
+          },
+          {
+            "images": [
+              {
+                "src": "assets/images/aarp-lifesync-persona-analytics/semantic-map.png",
+                "width": 2191,
+                "height": 848,
+                "alt": "UMAP projection of NYT and AARP article embeddings: NYT articles spread across a wide outline while AARP articles concentrate in one dense health-related region",
+                "caption": "AARP and NYT articles in a shared embedding space"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Matching gaps to personas",
+        "body": "Crossing the content gaps with my persona profiles showed that each persona cares about a different gap. Drug pricing and cancer care matter most to the Chronic Fighter. Plan selection matters most to the Aging Independent and the Planful Pre-Retiree. Politics and AI explainers register only with the Planful group.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/aarp-lifesync-persona-analytics/persona-gap-matrix.png",
+                "width": 1966,
+                "height": 749,
+                "alt": "Matrix of content gaps by persona with editorial implications: drug pricing and cancer care high for the Chronic Fighter, plan selection high for the Aging Independent and Planful Pre-Retiree, politics and AI medium for the Planful Pre-Retiree, weather and electric vehicles low for all",
+                "caption": "Salience of each content gap to each persona"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Healthcare blind spots",
+        "body": "Within healthcare, AARP publishes 49.6 times as much as the NYT on insurance coverage and plan design and 10.3 times as much on Medicare enrollment. The NYT leads on mental health (6.4 times), hospital care and public health crises (4.8 times), and healthcare policy (4.6 times). Where healthcare meets another subject, AARP has nothing: the NYT ran 246 articles on hospital care and AI, and AARP none. That pairing tops ten intersections with zero AARP coverage, and they became the article concepts LifeSync proposes, such as how AI can support mental health.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/aarp-lifesync-persona-analytics/subtopic-ratios.png",
+                "width": 895,
+                "height": 592,
+                "alt": "Coverage ratio by healthcare category on a log scale: AARP leads insurance coverage and plan design 49.6 times, Medicare enrollment 10.3 times, caregiving and retirement planning 5.3 times; NYT leads mental health 6.4 times, hospital care 4.8 times, healthcare policy 4.6 times",
+                "caption": "AARP to NYT coverage ratio by healthcare subtopic"
+              }
+            ]
+          },
+          {
+            "images": [
+              {
+                "src": "assets/images/aarp-lifesync-persona-analytics/blind-spots.png",
+                "width": 1384,
+                "height": 432,
+                "alt": "Table of ten healthcare topic intersections where AARP has zero articles, led by hospital care and AI with 246 NYT articles, then hospital care and politics with 80",
+                "caption": "Topic intersections with no AARP coverage"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "From content to a Medicare plan",
+        "body": "LifeSync ranks articles in two layers. The first matches content to the member's persona, subtopic fit, and freshness. The second refines each member's feed from scrolls, clicks, read time, and saves. The same persona profiles drive the Health & Wealth Hub, which scores plans from the CMS 2026 Medicare Advantage landscape. Price alone is a poor guide to plan quality: only 115 plans are both low-priced and high-quality, while 218 cost more and rate lower. The Hub weighs premium, star rating, drug coverage, and care performance together to surface the best-value plans for each persona.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/aarp-lifesync-persona-analytics/plan-value.png",
+                "width": 1229,
+                "height": 869,
+                "alt": "Bar chart of Medicare plans by price and quality: 115 low price and high quality, 145 high price and high quality, 267 low price and low quality, 218 high price and low quality",
+                "caption": "Medicare Advantage plans by price and quality"
+              }
+            ]
+          },
+          {
+            "images": [
+              {
+                "src": "assets/images/aarp-lifesync-persona-analytics/platform-flow.png",
+                "width": 1959,
+                "height": 1102,
+                "alt": "LifeSync platform flow in six steps: an AARP member is assigned one of three personas, content gaps and AARP's strengths feed a subtopic bridge that generates article concepts, a two-layer algorithm ranks content, and the outcome is a personalized healthcare plan recommendation",
+                "caption": "The full LifeSync pipeline, from member to plan recommendation"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Deliverables",
+        "body": "Four Python notebooks (persona segmentation, topic intelligence, a persona marketing plan, and Medicare plan analysis), a working LifeSync prototype, and a final recommendation deck. The notebooks are on GitHub. Raw survey data is left out because HRS and Pew data require registration to download."
+      }
+    ],
+    "tools": [
+      "Python",
+      "K-Means clustering",
+      "scikit-learn",
+      "pandas",
+      "sentence-transformers",
+      "Topic modeling"
+    ],
+    "dataSources": [
+      "RAND Health and Retirement Study (HRS), Wave 15 (2020)",
+      "New York Times and AARP article collections",
+      "CMS 2026 Medicare Advantage Landscape and Enrollment data",
+      "Pew Research Internet & Technology Survey",
+      "Google Trends"
+    ],
+    "images": [
+      {
+        "src": "assets/images/aarp-lifesync-persona-analytics/cover.png",
+        "width": 433,
+        "height": 289,
+        "alt": "LifeSync prototype header greeting a member named Judy above her personalized reading list"
+      }
+    ],
+    "links": [
+      {
+        "label": "View the notebooks on GitHub",
+        "url": "https://github.com/EverettYpsilantis/aarp-lifesync-persona-analytics"
+      }
+    ],
+    "featured": true,
+    "confidentialityNote": null
+  },
+  {
+    "id": "spotify-playlist-agent",
+    "title": "Spotify Playlist Agent",
+    "category": "AI & Agentic Systems",
+    "client": null,
+    "role": "Developer",
+    "dateRange": "2026",
+    "teaser": "A Claude agent that builds Spotify playlists from plain-language requests (venue, vibe, artist, tempo, energy) and refines them over a conversation, with an option to draw from your own Discogs record collection.",
+    "writeup": [
+      {
+        "heading": "The idea",
+        "body": "Building the right playlist for a wedding, a gym, or a coffee shop means juggling genre, era, mood, tempo, and how well known each song is. I built an agent that takes those inputs in plain language, builds a playlist with the Spotify Web API, and keeps refining it through conversation until it fits the room."
+      },
+      {
+        "heading": "How it works",
+        "body": "The agent runs on the Anthropic SDK in a tool-use loop. **SpotifyMCPClient** wraps the Spotify REST API in six discrete, MCP-style tools that Claude can call. **IterativePlaylistAgent** runs the loop: it sends the request, executes whatever tools Claude asks for, and feeds the results back with the conversation history. **PlaylistSession**, a stateful dataclass, holds the playlist and the user's preferences across turns. The front end is a set of notebook widgets: optional fields for genre, vibe, venue, artist, song, album, and era, plus sliders for BPM range, energy, valence, popularity, and playlist length.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/spotify-playlist-agent/input-window.png",
+                "width": 402,
+                "height": 253,
+                "alt": "Playlist Generator form with optional text fields for genre, vibe, venue, artist, song, album, and year or era, sliders for BPM range, energy, valence, popularity, and number of songs, and a Generate Playlist button",
+                "caption": "The input form: fill in as much or as little as you like"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Refining the playlist",
+        "body": "The first playlist is a starting point. Each row lists the year, BPM, energy, and valence, along with a short note on why the track fits. From there the user keeps talking to the agent (\"add Ripple by Grateful Dead\", \"replace track 3\", \"make it more upbeat\") and it edits the playlist in place, keeping everything it already knows. For events, it can organize tracks into segments: ceremony, cocktail hour, first dance, and party.",
+        "figures": [
+          {
+            "images": [
+              {
+                "src": "assets/images/spotify-playlist-agent/playlist-example.png",
+                "width": 1475,
+                "height": 572,
+                "alt": "Generated playlist for disco from 1975 to 1980: ten tracks including Le Freak by Chic, I Will Survive by Gloria Gaynor, and Hot Stuff by Donna Summer, each with album, genre, vibe, year, BPM, energy, valence, and a note on why it fits, above a Refine box with Refine and Finalize buttons",
+                "caption": "A 1975 to 1980 disco playlist, ready to refine"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Bringing your own records",
+        "body": "An optional Discogs workflow builds playlists from a user's own vinyl and CD collection in four steps: fetch the collection, expand each release into its tracks, match those tracks on Spotify, and load the matches into the agent as the pool it chooses from."
+      },
+      {
+        "heading": "Deliverables",
+        "body": "A single Python notebook. API keys for Anthropic, Spotify, and (optionally) Discogs are entered at runtime when prompted, so none are stored in the code."
+      }
+    ],
+    "tools": [
+      "Python",
+      "Anthropic SDK",
+      "Claude tool use",
+      "Spotify Web API",
+      "Discogs API",
+      "ipywidgets"
+    ],
+    "dataSources": [
+      "Spotify Web API",
+      "Discogs API"
+    ],
+    "images": [
+      {
+        "src": "assets/images/spotify-playlist-agent/cover.svg",
+        "width": 600,
+        "height": 400,
+        "alt": "Illustration of a green vinyl record on a turntable"
+      }
+    ],
+    "links": [
+      {
+        "label": "View the code on GitHub",
+        "url": "https://github.com/EverettYpsilantis/spotify-playlist-agent"
+      }
+    ],
+    "featured": true,
+    "confidentialityNote": null
+  }
+]
