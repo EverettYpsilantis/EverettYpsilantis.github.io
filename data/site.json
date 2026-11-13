@@ -56,6 +56,15 @@
     "emailLabel": "everett.ypsilantis22@gmail.com",
     "linkedin": "https://www.linkedin.com/in/everett-ypsilantis/",
     "github": "https://github.com/EverettYpsilantis",
-    "blurb": "I'm open to conversations about roles in geospatial analytics, data science, and AI, especially client-facing ones where I can do the technical work and present the findings."
+    "blurb": "I'm open to conversations about roles in geospatial analytics, data science, and AI, especially client-facing ones where I can do the technical work and present the findings.",
+    "form": {
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "Your email",
+      "messagePlaceholder": "Your message",
+      "submitLabel": "Send Message",
+      "note": "Opens your email app with this pre-filled, so you can hit send.",
+      "subjectPrefix": "Portfolio inquiry from",
+      "directLabel": "Or email directly:"
+    }
   }
 }

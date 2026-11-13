@@ -155,7 +155,13 @@
     if (contact.blurb) wrap.appendChild(h('p', { class: 'contact__blurb', text: contact.blurb }));
 
     var list = h('ul', { class: 'contact__links' });
-    if (contact.email) {
+    if (contact.email && contact.form) {
+      wrap.appendChild(buildContactForm(contact.email, contact.form));
+      wrap.appendChild(h('p', { class: 'contact__direct' }, [
+        document.createTextNode((contact.form.directLabel || 'Or email directly:') + ' '),
+        h('a', { href: 'mailto:' + contact.email, text: contact.emailLabel || contact.email })
+      ]));
+    } else if (contact.email) {
       list.appendChild(h('li', {}, [
         h('a', { href: 'mailto:' + contact.email, text: contact.emailLabel || contact.email })
       ]));
@@ -175,7 +181,51 @@
         h('a', { href: contact.github, rel: 'noopener', target: '_blank', text: 'GitHub' })
       ]));
     }
-    wrap.appendChild(list);
+    if (list.childNodes.length) wrap.appendChild(list);
+  }
+
+  // A static site cannot send mail itself, so the form builds a mailto: link
+  // with the visitor's name, email, and message filled in and opens their
+  // email app. Native validation (required, type=email) runs before submit.
+  function buildContactForm(email, form) {
+    function field(id, tag, type, placeholder, autocomplete) {
+      var input = h(tag, {
+        class: 'contact-form__input',
+        id: id,
+        name: id,
+        type: tag === 'input' ? type : null,
+        placeholder: placeholder,
+        autocomplete: autocomplete,
+        rows: tag === 'textarea' ? '5' : null,
+        required: 'required'
+      });
+      return h('div', { class: 'contact-form__field' }, [
+        h('label', { class: 'visually-hidden', for: id, text: placeholder }),
+        input
+      ]);
+    }
+
+    var node = h('form', { class: 'contact-form' }, [
+      field('contact-name', 'input', 'text', form.namePlaceholder || 'Your name', 'name'),
+      field('contact-email', 'input', 'email', form.emailPlaceholder || 'Your email', 'email'),
+      field('contact-message', 'textarea', null, form.messagePlaceholder || 'Your message', 'off'),
+      h('button', { type: 'submit', class: 'btn btn--primary contact-form__submit', text: form.submitLabel || 'Send Message' }),
+      form.note ? h('p', { class: 'contact-form__note', text: form.note }) : null
+    ]);
+
+    node.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var name = node.elements['contact-name'].value.trim();
+      var from = node.elements['contact-email'].value.trim();
+      var message = node.elements['contact-message'].value.trim();
+      var subject = (form.subjectPrefix || 'Portfolio inquiry from') + ' ' + name;
+      var body = message + '\n\n' + name + '\n' + from;
+      window.location.href = 'mailto:' + email +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+    });
+
+    return node;
   }
 
   /* -------------------------------------------------------------- projects */
